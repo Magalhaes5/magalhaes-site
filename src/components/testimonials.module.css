@@ -1,0 +1,9 @@
+.wrap{ padding: 6px }
+.grid{ display:grid; grid-template-columns:1fr; gap:14px }
+@media (min-width:800px){ .grid{ grid-template-columns:repeat(3,1fr) } }
+.card{
+  background:#121520; border:1px solid #1b1f2a; border-radius:12px;
+  padding:16px 16px 14px; box-shadow:0 6px 24px rgba(0,0,0,.25);
+}
+.quote{ margin:0 0 10px 0; color:#eaf0ff; line-height:1.55 }
+.meta{ margin:0; color:#a9b5d6; font-size:14px; border-top:1px dashed #273048; padding-top:8px }

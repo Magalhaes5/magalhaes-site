@@ -1,0 +1,55 @@
+.bleed {
+  position: relative;
+  min-height: var(--min-h, 320px);
+  padding: 40px 0;
+}
+
+/* layer that bleeds to viewport edges */
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* full-bleed trick */
+.image,
+.video {
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: center;
+}
+
+/* image via css var */
+.image {
+  background-image: var(--bg-url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* dim video a bit; overlay adds more */
+.video {
+  filter: brightness(calc(1 - var(--overlay, 0.35)));
+}
+
+.overlay {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, var(--overlay, 0.35));
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

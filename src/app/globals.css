@@ -1,0 +1,383 @@
+/* =========================
+   Reset & Base
+   ========================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  /* Compact base size (prevents a “zoomed” feel) */
+  font-size: 15px; /* 1rem = 15px */
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 1400px) {
+  html { font-size: 16px; }
+}
+
+@media (max-width: 420px) {
+  html { font-size: 14.5px; }
+}
+
+body {
+  margin: 0;
+  color: #e6edf3;
+  background: #0b111b;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.55;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =========================
+   Design Tokens
+   ========================= */
+
+:root {
+  /* Layout */
+  --container: 1120px;
+  --radius: 14px;
+
+  /* Spacing */
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 20px;
+  --space-5: 26px;
+
+  /* Surfaces */
+  --ui-bg: #0f1624;
+  --ui-elev: #0f1624cc;
+  --ui-border: #1e2a3a;
+  --ui-muted: #9fb0c3;
+
+  /* Brand */
+  --brand: #2f78ff;
+  --brand-2: #1b4ed8;
+  --brand-soft: rgba(47, 120, 255, 0.14);
+
+  /* Feedback */
+  --success: #25d366;
+
+  /* Effects */
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 8px 18px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  --transition-fast: 0.1s ease;
+  --transition-med: 0.2s ease;
+}
+
+
+/* =========================
+   Containers & Cards
+   ========================= */
+
+.section {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+.card {
+  background: var(--ui-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================
+   Typography (Compact)
+   ========================= */
+
+h1, h2, h3 {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 1.6rem + 1.2vw, 2.2rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 1.2rem + 0.8vw, 1.7rem);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: clamp(1.05rem, 1rem + 0.6vw, 1.25rem);
+}
+
+p {
+  margin: 0 0 var(--space-3);
+  color: #d6e1ea;
+}
+
+small,
+.muted {
+  color: var(--ui-muted);
+}
+
+
+/* =========================
+   Buttons
+   ========================= */
+
+.button {
+  --pad-y: 8px;
+  --pad-x: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: var(--pad-y) var(--pad-x);
+  border-radius: 10px;
+  border: 1px solid var(--ui-border);
+
+  text-decoration: none;
+  color: #e9f1ff;
+  background: #131c2b;
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  transition:
+    transform var(--transition-fast),
+    filter var(--transition-med),
+    background var(--transition-med),
+    border-color var(--transition-med);
+}
+
+.button:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand) 60%, white 40%);
+  outline-offset: 2px;
+}
+
+.button.primary {
+  background: var(--brand);
+  border-color: #2a63ce;
+}
+
+.button.secondary {
+  background: #121a28;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+/* =========================
+   Split Layout (Bio)
+   ========================= */
+
+.split2 {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 940px) {
+  .split2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================
+   Photo
+   ========================= */
+
+.photoCol {
+  align-self: start;
+}
+
+.photoFrame {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--ui-border);
+  box-shadow: var(--shadow-md);
+}
+
+
+/* =========================
+   HERO (Compact Video Hero)
+   ========================= */
+
+.heroVideo {
+  position: relative;
+  min-height: 58vh;
+  max-height: 72vh;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+}
+
+.videoWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.heroVideoEl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(110%);
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      120% 60% at 50% 40%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.45) 55%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 26px var(--space-3) 38px;
+  text-align: center;
+}
+
+.heroContent h1 {
+  margin-bottom: 8px;
+}
+
+.heroContent p {
+  margin: 0 0 12px;
+  color: #dfe8f4;
+}
+
+
+/* =========================
+   Lead Form Band (Tight)
+   ========================= */
+
+.band {
+  position: relative;
+  margin-top: -10px;
+}
+
+.bandMedia {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bandMedia > video,
+.bandMedia > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.72);
+}
+
+.bandInner {
+  position: relative;
+  padding: 22px 0;
+}
+
+
+/* =========================
+   Values Row (Pills)
+   ========================= */
+
+.pillGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .pillGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .pillGrid { grid-template-columns: 1fr; }
+}
+
+.pill {
+  background: var(--ui-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.pill h3 {
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+}
+
+.pill .sub {
+  color: var(--ui-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.langFlags {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+/* =========================
+   Utilities
+   ========================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand) 60%, white 40%);
+  outline-offset: 2px;
+}

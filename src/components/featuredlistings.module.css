@@ -1,0 +1,25 @@
+.bar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px }
+.controls{ display:flex; gap:8px }
+.arrow{
+  width:28px; height:28px; border-radius:8px; border:1px solid #2a3144;
+  background:#151a26; color:#eaf0ff; cursor:pointer;
+}
+.row{
+  display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:6px;
+}
+.row::-webkit-scrollbar{ height:8px }
+.row::-webkit-scrollbar-thumb{ background:#233052; border-radius:8px }
+.card{
+  min-width:320px; max-width:320px; scroll-snap-align:start;
+  border:1px solid #1b1f2a; border-radius:12px; background:#121520; padding:12px;
+  box-shadow:0 6px 24px rgba(0,0,0,.25)
+}
+.thumb{
+  height:160px; border-radius:10px; background: radial-gradient(80% 80% at 50% 50%, #2a3a5a, #0f121a);
+  margin-bottom:10px; border:1px solid #22304b;
+}
+.title{ margin:0 0 4px 0 }
+.meta{ margin:0 0 10px 0; color:#a9b5d6 }
+.price{
+  background:#1f6feb; color:#fff; border-radius:999px; padding:6px 10px; font-weight:700;
+}

@@ -1,0 +1,88 @@
+:root {
+  /* Match your Facebook FAB diameter here */
+  --wa-size: 52px;          /* desktop size */
+  --wa-size-sm: 48px;       /* mobile size */
+
+  --wa-green: #25D366;
+  --wa-green-hover: #20c35a;
+  --wa-shadow: 0 10px 24px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.18);
+  --wa-ring: 0 0 0 4px rgba(37, 211, 102, 0.35);
+
+  /* If you stack with another FAB (e.g. Facebook), this is the gap between them */
+  --wa-gap: 14px;
+}
+
+/* Host wrapper (bottom-right) */
+.host {
+  position: fixed;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  z-index: 1000;
+  pointer-events: none; /* only the button is clickable */
+  animation: waFloat 6s ease-in-out infinite;
+}
+
+/* Use this class if you want WA ABOVE another FAB of the same size */
+.host.aboveFb {
+  bottom: calc(max(22px, env(safe-area-inset-bottom)) + var(--wa-size) + var(--wa-gap));
+}
+
+.noFloat { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host { animation: none !important; }
+}
+
+/* Button */
+.btn {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: var(--wa-size);
+  height: var(--wa-size);
+  border-radius: 9999px;
+  background: var(--wa-green);
+  color: #fff;
+  box-shadow: var(--wa-shadow);
+  text-decoration: none;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  will-change: transform;
+  outline: none;
+}
+
+.btn:hover {
+  background: var(--wa-green-hover);
+  transform: translateY(-2px);
+}
+.btn:active { transform: translateY(0); }
+
+.btn:focus-visible { box-shadow: var(--wa-ring), var(--wa-shadow); }
+
+@media print { .host { display: none; } }
+
+/* Icon size:
+   ~46% of the button diameter matches common FABs nicely */
+.icon {
+  width: calc(var(--wa-size) * 0.46);
+  height: calc(var(--wa-size) * 0.46);
+  display: block;
+}
+
+/* Mobile downscaling (keeps the same icon proportion) */
+@media (max-width: 640px) {
+  .btn {
+    width: var(--wa-size-sm);
+    height: var(--wa-size-sm);
+  }
+  .icon {
+    width: calc(var(--wa-size-sm) * 0.46);
+    height: calc(var(--wa-size-sm) * 0.46);
+  }
+}
+
+/* Gentle float */
+@keyframes waFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
